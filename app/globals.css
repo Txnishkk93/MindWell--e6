@@ -3,12 +3,81 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-mindwell-green: #6b8e73;
-  --color-mindwell-cream: #f5f1e8;
-  --color-mindwell-terracotta: #d4a574;
-  --color-mindwell-accent-light: #e9edc9;
-  --color-mindwell-accent-dark: #ccd5ae;
+/* MindWell color definitions as fallbacks for Tailwind classes */
+@layer components {
+  .bg-mindwell-cream {
+    @apply !bg-[#f5f1e8];
+  }
+  .text-mindwell-cream {
+    @apply !text-[#f5f1e8];
+  }
+  .bg-mindwell-primary-green {
+    @apply !bg-[#6b8e73];
+  }
+  .text-mindwell-primary-green {
+    @apply !text-[#6b8e73];
+  }
+  .border-mindwell-primary-green {
+    @apply !border-[#6b8e73];
+  }
+  .bg-mindwell-accent-light {
+    @apply !bg-[#e9edc9];
+  }
+  .text-mindwell-accent-light {
+    @apply !text-[#e9edc9];
+  }
+  .bg-mindwell-accent-dark {
+    @apply !bg-[#ccd5ae];
+  }
+  .text-mindwell-accent-dark {
+    @apply !text-[#ccd5ae];
+  }
+  .bg-mindwell-terracotta {
+    @apply !bg-[#d4a574];
+  }
+  .text-mindwell-terracotta {
+    @apply !text-[#d4a574];
+  }
+  
+  /* Gradient utilities */
+  .from-mindwell-cream {
+    @apply !from-[#f5f1e8];
+  }
+  .to-mindwell-cream {
+    @apply !to-[#f5f1e8];
+  }
+  .from-mindwell-primary-green {
+    @apply !from-[#6b8e73];
+  }
+  .to-mindwell-primary-green {
+    @apply !to-[#6b8e73];
+  }
+  .from-mindwell-accent-light {
+    @apply !from-[#e9edc9];
+  }
+  .to-mindwell-accent-light {
+    @apply !to-[#e9edc9];
+  }
+  .from-mindwell-accent-dark {
+    @apply !from-[#ccd5ae];
+  }
+  .to-mindwell-accent-dark {
+    @apply !to-[#ccd5ae];
+  }
+  
+  /* Focus states */
+  .focus\:border-mindwell-primary-green:focus {
+    @apply !border-[#6b8e73];
+  }
+  .focus\:ring-mindwell-primary-green:focus {
+    @apply !ring-[#6b8e73];
+  }
+  .hover\:bg-mindwell-primary-green\/30:hover {
+    @apply !bg-[rgba(107,142,115,0.3)];
+  }
+  .hover\:border-mindwell-primary-green\/30:hover {
+    @apply !border-[rgba(107,142,115,0.3)];
+  }
 }
 
 :root {
