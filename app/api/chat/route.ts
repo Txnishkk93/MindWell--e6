@@ -9,7 +9,7 @@ const messageSchema = z.object({
   conversationId: z.string().optional(),
 })
 
-const client = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '')
+const client = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || '')
 
 const SYSTEM_PROMPT = `You are MindWell, a compassionate and supportive mental wellness assistant designed specifically for Indian students and young professionals. Your role is to:
 
@@ -79,19 +79,23 @@ export async function POST(request: NextRequest) {
       : []
 
     // Build chat history for context
-    const chatHistory = previousMessages
-      .reverse()
-      .map((msg) => ({
-        role: msg.role as 'user' | 'assistant',
-        content: msg.content,
-      }))
+    // Build chat history for context
+const chatHistory = previousMessages
+  .reverse()
+  .map((msg) => ({
+    role: msg.role === 'assistant' ? 'model' : 'user',  // Gemini uses 'model', not 'assistant'
+    parts: [{ text: msg.content }],                      // Gemini needs 'parts' array, not 'content'
+  }))
 
     // Stream response from Gemini
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' })
     const chat = model.startChat({
-      history: chatHistory,
-      systemInstruction: SYSTEM_PROMPT,
-    })
+  history: chatHistory,
+  systemInstruction: {
+    role: 'system',
+    parts: [{ text: SYSTEM_PROMPT }],
+  },
+})
 
     const result = await chat.sendMessageStream(message)
 
