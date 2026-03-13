@@ -30,6 +30,7 @@ model User {
 model ChatMessage {
   id             String   @id @default(cuid())
   userId         String
+  role           String
   content        String   @db.Text
   helpful        Boolean? // ← add this line
   conversationId String?
