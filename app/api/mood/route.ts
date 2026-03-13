@@ -6,6 +6,7 @@ import { z } from 'zod'
 const moodSchema = z.object({
   mood: z.number().min(1).max(4, 'Mood must be between 1 and 4'),
   notes: z.string().optional(),
+  tags: z.array(z.string()).optional().default([]),
 })
 
 export async function POST(request: NextRequest) {
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { mood, notes } = moodSchema.parse(body)
+    const { mood, notes, tags } = moodSchema.parse(body)
 
     // Check if mood entry already exists for today
     const today = new Date()
@@ -25,9 +26,7 @@ export async function POST(request: NextRequest) {
     const existingEntry = await prisma.moodEntry.findFirst({
       where: {
         userId: session.user.id,
-        createdAt: {
-          gte: today,
-        },
+        createdAt: { gte: today },
       },
     })
 
@@ -56,12 +55,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
-
     console.error('[v0] Mood API error:', error)
-    return NextResponse.json(
-      { error: 'Failed to save mood' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to save mood' }, { status: 500 })
   }
 }
 
@@ -82,9 +77,7 @@ export async function GET(request: NextRequest) {
     const moodEntries = await prisma.moodEntry.findMany({
       where: {
         userId: session.user.id,
-        createdAt: {
-          gte: startDate,
-        },
+        createdAt: { gte: startDate },
       },
       orderBy: { createdAt: 'asc' },
     })
@@ -113,9 +106,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ entries: moodEntries, chartData })
   } catch (error) {
     console.error('[v0] Mood GET error:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch mood data' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to fetch mood data' }, { status: 500 })
   }
 }
