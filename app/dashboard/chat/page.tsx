@@ -82,10 +82,10 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-b from-white to-mindwell-cream">
+    <div className="h-full flex flex-col" style={{ background: 'linear-gradient(to bottom, white, #f5f1e8)' }}>
       {/* Header */}
       <div className="border-b border-gray-200 bg-white px-8 py-6">
-        <h1 className="text-2xl font-bold text-mindwell-primary-green">Your Wellness Companion</h1>
+        <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>Your Wellness Companion</h1>
         <p className="text-gray-600 text-sm mt-1">
           Chat with MindWell about stress, anxiety, or anything on your mind
         </p>
@@ -96,7 +96,7 @@ export default function ChatPage() {
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center max-w-md">
-              <div className="w-16 h-16 rounded-full bg-mindwell-cream flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#f5f1e8' }}>
                 <span className="text-3xl">🌿</span>
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome!</h2>
@@ -112,11 +112,11 @@ export default function ChatPage() {
               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-xs lg:max-w-md xl:max-w-lg px-6 py-4 rounded-lg ${
-                  message.role === 'user'
-                    ? 'bg-mindwell-primary-green text-white rounded-br-none'
-                    : 'bg-white text-gray-900 border border-gray-200 rounded-bl-none shadow-sm'
-                }`}
+                className="max-w-xs lg:max-w-md xl:max-w-lg px-6 py-4 rounded-lg"
+                style={message.role === 'user'
+                  ? { backgroundColor: '#6b8e73', color: 'white', borderBottomRightRadius: '0' }
+                  : { backgroundColor: 'white', color: '#111827', border: '1px solid #e5e7eb', borderBottomLeftRadius: '0', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }
+                }
               >
                 <p className="text-sm leading-relaxed">{message.content}</p>
               </div>
@@ -128,7 +128,7 @@ export default function ChatPage() {
           <div className="flex justify-start">
             <Card className="px-6 py-4 bg-white border-gray-200">
               <div className="flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-mindwell-primary-green" />
+                <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#6b8e73' }} />
                 <span className="text-sm text-gray-600">Thinking...</span>
               </div>
             </Card>
@@ -146,12 +146,13 @@ export default function ChatPage() {
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Type your message..."
             disabled={isLoading}
-            className="flex-1 border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+            className="flex-1 border-gray-200"
           />
           <Button
             type="submit"
             disabled={isLoading || !inputValue.trim()}
-            className="bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white"
+            className="text-white"
+            style={{ backgroundColor: '#6b8e73' }}
           >
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />

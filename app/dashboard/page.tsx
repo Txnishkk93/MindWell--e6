@@ -9,21 +9,21 @@ const features = [
     description: 'Talk to your personal wellness companion. Get support anytime.',
     icon: MessageSquare,
     href: '/dashboard/chat',
-    color: 'text-mindwell-primary-green',
+    color: '#6b8e73',
   },
   {
     title: 'Mood Tracker',
     description: 'Track your mood daily and see patterns over time.',
     icon: TrendingUp,
     href: '/dashboard/mood',
-    color: 'text-mindwell-terracotta',
+    color: '#d4a574',
   },
   {
     title: 'Journal',
     description: 'Express yourself freely. Get AI-powered emotional insights.',
     icon: FileText,
     href: '/dashboard/journal',
-    color: 'text-mindwell-accent-dark',
+    color: '#ccd5ae',
   },
   {
     title: 'Burnout Survey',
@@ -51,7 +51,7 @@ export default function DashboardPage() {
             <Link key={feature.href} href={feature.href}>
               <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 bg-mindwell-cream rounded-lg ${feature.color}`}>
+                  <div className="p-3 rounded-lg" style={{ backgroundColor: '#f5f1e8', color: feature.color }}>
                     <Icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
@@ -61,7 +61,7 @@ export default function DashboardPage() {
                     <p className="text-gray-600 text-sm mb-4">
                       {feature.description}
                     </p>
-                    <Button variant="ghost" className="text-mindwell-primary-green hover:bg-mindwell-cream">
+                    <Button variant="ghost" style={{ color: '#6b8e73' }}>
                       Explore →
                     </Button>
                   </div>
@@ -72,8 +72,8 @@ export default function DashboardPage() {
         })}
       </div>
 
-      <div className="mt-12 bg-gradient-to-r from-mindwell-cream to-mindwell-accent-light rounded-lg p-8">
-        <h2 className="text-2xl font-bold text-mindwell-primary-green mb-2">
+      <div className="mt-12 rounded-lg p-8" style={{ background: 'linear-gradient(to right, #f5f1e8, #e9edc9)' }}>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#6b8e73' }}>
           Your mental health matters
         </h2>
         <p className="text-gray-700 mb-4">

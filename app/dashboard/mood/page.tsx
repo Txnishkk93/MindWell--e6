@@ -104,10 +104,9 @@ export default function MoodTrackerPage() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-b from-white to-mindwell-cream overflow-y-auto">
-      {/* Header */}
-      <div className="border-b border-gray-200 bg-white px-8 py-6 sticky top-0">
-        <h1 className="text-2xl font-bold text-mindwell-primary-green">Mood Tracker</h1>
+    <div className="h-full flex flex-col overflow-y-auto" style={{ backgroundColor: '#f5f1e8' }}>
+      <div className="p-8 max-w-2xl">
+        <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>Mood Tracker</h1>
         <p className="text-gray-600 text-sm mt-1">
           Track how you're feeling daily and discover patterns
         </p>
@@ -124,11 +123,11 @@ export default function MoodTrackerPage() {
                 key={option.value}
                 onClick={() => setSelectedMood(option.value)}
                 disabled={isLoading}
-                className={`p-6 rounded-lg transition-all ${
-                  selectedMood === option.value
-                    ? 'bg-mindwell-primary-green/10 border-2 border-mindwell-primary-green scale-105'
-                    : 'bg-mindwell-cream border-2 border-transparent hover:border-mindwell-primary-green/30'
-                }`}
+                className="p-6 rounded-lg transition-all border-2"
+                style={selectedMood === option.value
+                  ? { backgroundColor: 'rgba(107, 142, 115, 0.1)', borderColor: '#6b8e73', transform: 'scale(1.05)' }
+                  : { backgroundColor: '#f5f1e8', borderColor: 'transparent' }
+                }
               >
                 <div className="text-4xl mb-2">{option.emoji}</div>
                 <div className="text-sm font-medium text-gray-700">{option.label}</div>
@@ -145,14 +144,15 @@ export default function MoodTrackerPage() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               disabled={isLoading}
-              className="border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+              className="border-gray-200"
             />
           </div>
 
           <Button
             onClick={handleSaveMood}
             disabled={isLoading || !selectedMood}
-            className="w-full bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white font-medium py-2 rounded-lg"
+            className="w-full text-white font-medium py-2 rounded-lg"
+            style={{ backgroundColor: '#6b8e73' }}
           >
             {isLoading ? 'Saving...' : 'Save Mood Entry'}
           </Button>
@@ -200,7 +200,7 @@ export default function MoodTrackerPage() {
         </Card>
 
         {/* Insights */}
-        <Card className="p-8 bg-gradient-to-r from-mindwell-accent-light to-mindwell-accent-dark text-mindwell-primary-green border-0">
+        <Card className="p-8 border-0" style={{ background: 'linear-gradient(to right, #e9edc9, #ccd5ae)', color: '#6b8e73' }}>
           <h3 className="text-lg font-semibold mb-2">✨ Wellness Tip</h3>
           <p>
             Tracking your mood helps you identify patterns and triggers. Regular mood logging can improve your mental health awareness and help you recognize what impacts your well-being most.
