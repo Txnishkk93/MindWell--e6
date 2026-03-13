@@ -28,15 +28,14 @@ model User {
 }
 
 model ChatMessage {
-  id              String     @id @default(cuid())
-  userId          String
-  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role            String     // "user" or "assistant"
-  content         String     @db.Text
-  conversationId  String?
-  createdAt       DateTime   @default(now())
-
-  @@index([userId, conversationId, createdAt(sort: Desc)])
+  id             String   @id @default(cuid())
+  userId         String
+  content        String   @db.Text
+  helpful        Boolean? // ← add this line
+  conversationId String?
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
 }
 
 model MoodEntry {

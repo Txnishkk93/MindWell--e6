@@ -8,7 +8,7 @@ export default function HomePage() {
       {/* Navigation */}
       <nav className="border-b border-gray-200 bg-white/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>MindWell</h1>
+          <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>आत्mann</h1>
           <div className="flex gap-4">
             <Link href="/auth/login">
               <Button variant="outline" style={{ borderColor: '#6b8e73', color: '#6b8e73' }} className="hover:bg-orange-50">
