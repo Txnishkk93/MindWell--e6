@@ -28,65 +28,51 @@ model User {
 }
 
 model ChatMessage {
-  id        String     @id @default(cuid())
-  userId    String
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role      String     // "user" or "assistant"
-  content   String     @db.Text
-  createdAt DateTime   @default(now())
+  id              String     @id @default(cuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role            String     // "user" or "assistant"
+  content         String     @db.Text
+  conversationId  String?
+  createdAt       DateTime   @default(now())
 
-  @@index([userId, createdAt(sort: Desc)])
-}
-
-enum Mood {
-  HAPPY
-  NEUTRAL
-  STRESSED
-  BURNED_OUT
+  @@index([userId, conversationId, createdAt(sort: Desc)])
 }
 
 model MoodEntry {
   id        String     @id @default(cuid())
   userId    String
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  mood      Mood
-  note      String?    @db.Text
+  mood      Int        // 1-4 scale
+  notes     String?    @db.Text
   createdAt DateTime   @default(now())
 
   @@index([userId, createdAt(sort: Desc)])
 }
 
 model JournalEntry {
-  id        String     @id @default(cuid())
-  userId    String
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title     String
-  content   String     @db.Text
-  aiSummary String?    @db.Text
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id                String     @id @default(cuid())
+  userId            String
+  user              User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content           String     @db.Text
+  emotionalSummary  String?    @db.Text
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
 
   @@index([userId, createdAt(sort: Desc)])
 }
 
-enum StressLevel {
-  LOW
-  MODERATE
-  HIGH
-  SEVERE
-}
-
 model SurveyResponse {
-  id                    String     @id @default(cuid())
-  userId                String
-  user                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  wellbeingScore        Int
-  stressorScore         Int
-  flashpointScore       Int
-  totalScore            Int
-  level                 StressLevel
-  recommendations       String     @db.Text
-  createdAt             DateTime   @default(now())
+  id                        String     @id @default(cuid())
+  userId                    String
+  user                      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  emotionalExhaustion       Int
+  depersonalization         Int
+  personalAccomplishment    Int
+  score                     Int
+  level                     String     // "Low", "Moderate", "High", "Very High"
+  recommendations           String     @db.Text
+  createdAt                 DateTime   @default(now())
 
   @@index([userId, createdAt(sort: Desc)])
 }
