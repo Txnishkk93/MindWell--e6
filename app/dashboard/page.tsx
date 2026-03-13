@@ -77,7 +77,7 @@ export default function DashboardPage() {
           Your mental health matters
         </h2>
         <p className="text-gray-700 mb-4">
-          MindWell is designed to support you through stress, anxiety, and burnout with personalized tools and AI-powered insights. Remember, it's okay to not be okay. We're here for you.
+          आत्mann is designed to support you through stress, anxiety, and burnout with personalized tools and AI-powered insights. Remember, it's okay to not be okay. We're here for you.
         </p>
       </div>
     </div>

@@ -8,7 +8,7 @@ const geist = Geist({ subsets: ["latin"], variable: '--font-sans' });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'MindWell - Mental Wellness Companion',
+  title: 'आत्mann- Mental Wellness Companion',
   description: 'Your personal AI wellness companion for managing stress, burnout, and mental health. Track your mood, journal freely, and get personalized insights.',
   generator: 'v0.app',
   icons: {

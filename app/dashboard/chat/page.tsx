@@ -729,7 +729,7 @@ export default function ChatPage() {
             </div>
             <div>
               <h1 className="text-sm font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
-                MindWell AI
+                आत्mann
               </h1>
               <p className="text-[11px] text-gray-500 dark:text-gray-400">
                 Private · Confidential · Always here
@@ -800,7 +800,7 @@ export default function ChatPage() {
                 }`}
               >
                 <span className="text-[10px] font-medium text-gray-400 dark:text-gray-500 px-1">
-                  {message.role === 'user' ? 'You' : 'MindWell AI'}
+                  {message.role === 'user' ? 'You' : 'आत्mann AI'}
                 </span>
 
                 <div

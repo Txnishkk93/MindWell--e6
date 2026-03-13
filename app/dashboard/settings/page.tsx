@@ -131,7 +131,7 @@ export default function SettingsPage() {
         <Card className="p-8 bg-gradient-to-r from-mindwell-accent-light to-mindwell-accent-dark border-0 mb-6">
           <h2 className="text-lg font-semibold text-mindwell-primary-green mb-4">About MindWell</h2>
           <p className="text-sm text-gray-700 mb-4">
-            MindWell is your personal AI wellness companion, designed to support mental health through chat, mood tracking, journaling, and burnout assessment.
+            आत्mann is your personal AI wellness companion, designed to support mental health through chat, mood tracking, journaling, and burnout assessment.
           </p>
           <p className="text-xs text-gray-600">
             Version 1.0 • Built with care for your well-being

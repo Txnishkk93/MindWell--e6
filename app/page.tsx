@@ -85,7 +85,7 @@ export default function HomePage() {
             Take the first step towards better mental health
           </h3>
           <p className="text-lg mb-8 opacity-90">
-            Join thousands of students and professionals already using MindWell for their wellness journey.
+            Join thousands of students and professionals already using आत्mann for their wellness journey.
           </p>
           <Link href="/auth/signup">
             <Button className="bg-white hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg" style={{ color: '#6b8e73' }}>
