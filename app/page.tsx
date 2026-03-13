@@ -11,19 +11,19 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mindwell-cream via-white to-blue-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#f5f1e8' }}>
       {/* Navigation */}
       <nav className="border-b border-gray-200 bg-white/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-mindwell-primary-green">MindWell</h1>
+          <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>MindWell</h1>
           <div className="flex gap-4">
             <Link href="/auth/login">
-              <Button variant="outline" className="border-mindwell-primary-green text-mindwell-primary-green hover:bg-mindwell-cream">
+              <Button variant="outline" style={{ borderColor: '#6b8e73', color: '#6b8e73' }} className="hover:bg-orange-50">
                 Sign In
               </Button>
             </Link>
             <Link href="/auth/signup">
-              <Button className="bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white">
+              <Button className="text-white" style={{ backgroundColor: '#6b8e73' }}>
                 Get Started
               </Button>
             </Link>
@@ -33,11 +33,6 @@ export default async function HomePage() {
 
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-mindwell-accent-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-mindwell-primary-green rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-
         <div className="relative max-w-7xl mx-auto px-6 py-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -47,7 +42,7 @@ export default async function HomePage() {
               Chat with AI, track your mood, journal freely, and understand your burnout levels. All designed for your mental well-being.
             </p>
             <Link href="/auth/signup">
-              <Button className="bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white text-lg px-8 py-3 rounded-lg">
+              <Button className="text-white text-lg px-8 py-3 rounded-lg" style={{ backgroundColor: '#6b8e73' }}>
                 Start Free Today
               </Button>
             </Link>
@@ -91,7 +86,7 @@ export default async function HomePage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-mindwell-primary-green text-white py-16 px-6">
+      <div className="text-white py-16 px-6" style={{ backgroundColor: '#6b8e73' }}>
         <div className="max-w-3xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-4">
             Take the first step towards better mental health
@@ -100,7 +95,7 @@ export default async function HomePage() {
             Join thousands of students and professionals already using MindWell for their wellness journey.
           </p>
           <Link href="/auth/signup">
-            <Button className="bg-white hover:bg-gray-100 text-mindwell-primary-green font-semibold px-8 py-3 rounded-lg">
+            <Button className="bg-white hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg" style={{ color: '#6b8e73' }}>
               Get Started Free
             </Button>
           </Link>

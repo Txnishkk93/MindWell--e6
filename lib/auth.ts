@@ -3,7 +3,29 @@ import Credentials from "next-auth/providers/credentials"
 import { compare } from "bcryptjs"
 import { prisma } from "./prisma"
 
+declare module "next-auth" {
+  interface User {
+    id: string
+    name?: string
+    email?: string
+  }
+
+  interface Session {
+    user: User & {
+      id: string
+    }
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id?: string
+  }
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET || "dev-secret-key-change-in-production",
+  trustHost: true,
   providers: [
     Credentials({
       name: "Credentials",
@@ -12,38 +34,42 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password required")
-        }
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error("Email and password required")
+          }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string },
-        })
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email as string },
+          })
 
-        if (!user) {
-          throw new Error("User not found")
-        }
+          if (!user) {
+            throw new Error("User not found")
+          }
 
-        const passwordMatch = await compare(
-          credentials.password as string,
-          user.password
-        )
+          const passwordMatch = await compare(
+            credentials.password as string,
+            user.password
+          )
 
-        if (!passwordMatch) {
-          throw new Error("Invalid password")
-        }
+          if (!passwordMatch) {
+            throw new Error("Invalid password")
+          }
 
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+          }
+        } catch (error) {
+          console.error("[v0] Auth error:", error)
+          return null
         }
       },
     }),
   ],
   pages: {
     signIn: "/auth/login",
-    signUp: "/auth/signup",
   },
   session: {
     strategy: "jwt",
