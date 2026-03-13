@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  chatMessages ChatMessage[]
+  moodEntries  MoodEntry[]
+  journalEntries JournalEntry[]
+  surveyResponses SurveyResponse[]
+
+  @@index([email])
+}
+
+model ChatMessage {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String     // "user" or "assistant"
+  content   String     @db.Text
+  createdAt DateTime   @default(now())
+
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+enum Mood {
+  HAPPY
+  NEUTRAL
+  STRESSED
+  BURNED_OUT
+}
+
+model MoodEntry {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mood      Mood
+  note      String?    @db.Text
+  createdAt DateTime   @default(now())
+
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+model JournalEntry {
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  content   String     @db.Text
+  aiSummary String?    @db.Text
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([userId, createdAt(sort: Desc)])
+}
+
+enum StressLevel {
+  LOW
+  MODERATE
+  HIGH
+  SEVERE
+}
+
+model SurveyResponse {
+  id                    String     @id @default(cuid())
+  userId                String
+  user                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wellbeingScore        Int
+  stressorScore         Int
+  flashpointScore       Int
+  totalScore            Int
+  level                 StressLevel
+  recommendations       String     @db.Text
+  createdAt             DateTime   @default(now())
+
+  @@index([userId, createdAt(sort: Desc)])
+}
