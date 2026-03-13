@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
-import { compare } from "bcryptjs"
-import { prisma } from "./prisma"
+import { compare, hash } from "bcryptjs"
 
 declare module "next-auth" {
   interface User {
@@ -23,8 +22,16 @@ declare module "next-auth/jwt" {
   }
 }
 
+// Default demo user for testing
+const DEMO_USER = {
+  id: "demo-user-123",
+  email: "test@mindwell.app",
+  name: "Demo User",
+  password: "$2a$10$bWrr8FQj6PnBD5kN7h7RH.7Ydmq.2L/vDVG3vQVtXZ7r3KJcKYMRG", // TestUser123!
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  secret: process.env.AUTH_SECRET || "dev-secret-key-change-in-production",
+  secret: process.env.AUTH_SECRET || "dev-secret-key-for-mindwell-change-in-production",
   trustHost: true,
   providers: [
     Credentials({
@@ -36,30 +43,65 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         try {
           if (!credentials?.email || !credentials?.password) {
-            throw new Error("Email and password required")
+            return null
           }
 
-          const user = await prisma.user.findUnique({
-            where: { email: credentials.email as string },
-          })
+          // Try database first if available
+          try {
+            const { prisma } = await import("./prisma")
+            const user = await prisma.user.findUnique({
+              where: { email: credentials.email as string },
+            })
 
-          if (!user) {
-            throw new Error("User not found")
-          }
+            if (!user) {
+              // Check demo user
+              if (credentials.email === DEMO_USER.email) {
+                const passwordMatch = await compare(
+                  credentials.password as string,
+                  DEMO_USER.password
+                )
+                if (passwordMatch) {
+                  return {
+                    id: DEMO_USER.id,
+                    email: DEMO_USER.email,
+                    name: DEMO_USER.name,
+                  }
+                }
+              }
+              return null
+            }
 
-          const passwordMatch = await compare(
-            credentials.password as string,
-            user.password
-          )
+            const passwordMatch = await compare(
+              credentials.password as string,
+              user.password
+            )
 
-          if (!passwordMatch) {
-            throw new Error("Invalid password")
-          }
+            if (!passwordMatch) {
+              return null
+            }
 
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
+            return {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+            }
+          } catch (dbError) {
+            // Fallback to demo user if database unavailable
+            console.warn("[v0] Database unavailable, using demo user:", dbError)
+            if (credentials.email === DEMO_USER.email) {
+              const passwordMatch = await compare(
+                credentials.password as string,
+                DEMO_USER.password
+              )
+              if (passwordMatch) {
+                return {
+                  id: DEMO_USER.id,
+                  email: DEMO_USER.email,
+                  name: DEMO_USER.name,
+                }
+              }
+            }
+            return null
           }
         } catch (error) {
           console.error("[v0] Auth error:", error)
@@ -73,7 +115,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
     async jwt({ token, user }) {

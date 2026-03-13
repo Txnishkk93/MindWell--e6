@@ -63,16 +63,10 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mindwell-cream via-white to-blue-50 flex items-center justify-center p-4">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-mindwell-accent-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-mindwell-primary-green rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#f5f1e8' }}>
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-mindwell-primary-green mb-2">MindWell</h1>
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#6b8e73' }}>MindWell</h1>
           <p className="text-gray-600">Start Your Wellness Journey</p>
         </div>
 
@@ -90,7 +84,7 @@ export default function SignupPage() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
               />
             </div>
 
@@ -106,7 +100,7 @@ export default function SignupPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
               />
             </div>
 
@@ -123,7 +117,7 @@ export default function SignupPage() {
                 required
                 disabled={isLoading}
                 minLength={8}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
               />
               <p className="text-xs text-gray-500 mt-1">At least 8 characters</p>
             </div>
@@ -141,14 +135,15 @@ export default function SignupPage() {
                 required
                 disabled={isLoading}
                 minLength={8}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
               />
             </div>
 
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white font-medium py-2 rounded-lg transition-colors"
+              className="w-full text-white font-medium py-2 rounded-lg transition-colors"
+              style={{ backgroundColor: '#6b8e73' }}
             >
               {isLoading ? (
                 <>
@@ -164,7 +159,7 @@ export default function SignupPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}
-              <Link href="/auth/login" className="font-medium text-mindwell-primary-green hover:underline">
+              <Link href="/auth/login" className="font-medium hover:underline" style={{ color: '#6b8e73' }}>
                 Sign in
               </Link>
             </p>

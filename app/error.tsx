@@ -15,7 +15,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mindwell-cream via-white to-blue-50 p-4">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#f5f1e8' }}>
       <div className="text-center max-w-md">
         <div className="text-6xl mb-4">😔</div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Something went wrong</h1>
@@ -25,13 +25,15 @@ export default function Error({
         <div className="space-y-3">
           <Button
             onClick={reset}
-            className="w-full bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white"
+            className="w-full text-white"
+            style={{ backgroundColor: '#6b8e73' }}
           >
             Try Again
           </Button>
           <Button
             variant="outline"
-            className="w-full border-mindwell-primary-green text-mindwell-primary-green hover:bg-mindwell-cream"
+            className="w-full"
+            style={{ borderColor: '#6b8e73', color: '#6b8e73' }}
             onClick={() => (window.location.href = '/')}
           >
             Go Home

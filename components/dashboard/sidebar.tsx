@@ -37,9 +37,9 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 bg-mindwell-cream border-r border-gray-200 p-6 flex flex-col">
+    <aside className="w-64 border-r border-gray-200 p-6 flex flex-col" style={{ backgroundColor: '#f5f1e8' }}>
       <Link href="/dashboard" className="mb-8">
-        <h1 className="text-2xl font-bold text-mindwell-primary-green">MindWell</h1>
+        <h1 className="text-2xl font-bold" style={{ color: '#6b8e73' }}>MindWell</h1>
       </Link>
 
       <nav className="space-y-2 flex-1">
@@ -53,9 +53,10 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-mindwell-primary-green text-white'
+                  ? 'text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               )}
+              style={isActive ? { backgroundColor: '#6b8e73' } : {}}
             >
               <Icon className="w-5 h-5" />
               {item.label}

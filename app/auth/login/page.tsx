@@ -41,16 +41,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mindwell-cream via-white to-blue-50 flex items-center justify-center p-4">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-mindwell-accent-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-mindwell-primary-green rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#f5f1e8' }}>
+      
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-mindwell-primary-green mb-2">MindWell</h1>
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#6b8e73' }}>MindWell</h1>
           <p className="text-gray-600">Your Mental Wellness Companion</p>
         </div>
 
@@ -68,7 +63,8 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
+                style={{ '--tw-ring-color': '#6b8e73' } as React.CSSProperties}
               />
             </div>
 
@@ -84,14 +80,16 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full border-gray-200 focus:border-mindwell-primary-green focus:ring-mindwell-primary-green"
+                className="w-full border-gray-200"
+                style={{ '--tw-ring-color': '#6b8e73' } as React.CSSProperties}
               />
             </div>
 
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-mindwell-primary-green hover:bg-mindwell-primary-green/90 text-white font-medium py-2 rounded-lg transition-colors"
+              className="w-full text-white font-medium py-2 rounded-lg transition-colors"
+              style={{ backgroundColor: '#6b8e73' }}
             >
               {isLoading ? (
                 <>
@@ -107,7 +105,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <Link href="/auth/signup" className="font-medium text-mindwell-primary-green hover:underline">
+              <Link href="/auth/signup" className="font-medium hover:underline" style={{ color: '#6b8e73' }}>
                 Create one
               </Link>
             </p>

@@ -1,14 +1,7 @@
 import Link from 'next/link'
-import { auth } from '@/lib/auth'
-import { redirect } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 
-export default async function HomePage() {
-  const session = await auth()
-
-  if (session) {
-    redirect('/dashboard')
-  }
+export default function HomePage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f5f1e8' }}>

@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme inline {
+  --color-mindwell-green: #6b8e73;
+  --color-mindwell-cream: #f5f1e8;
+  --color-mindwell-terracotta: #d4a574;
+  --color-mindwell-accent-light: #e9edc9;
+  --color-mindwell-accent-dark: #ccd5ae;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
