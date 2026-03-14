@@ -49,7 +49,7 @@ export function Sidebar() {
   return (
     <aside className="w-64 border-r border-gray-200 dark:border-gray-700 p-6 flex flex-col bg-[#f5f1e8] dark:bg-gray-900 transition-colors">
       <Link href="/dashboard" className="mb-8">
-        <h1 className="text-2xl font-bold text-[#6b8e73] dark:text-green-400">MindWell</h1>
+        <h1 className="text-2xl font-bold text-[#6b8e73] dark:text-green-400">आत्mann</h1>
       </Link>
 
       <nav className="space-y-2 flex-1">

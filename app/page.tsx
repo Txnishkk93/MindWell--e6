@@ -98,7 +98,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200 py-8 px-6">
         <div className="max-w-7xl mx-auto text-center text-gray-600 text-sm">
-          <p>© 2024 MindWell. Taking care of your mental health, one step at a time.</p>
+          <p>© 2024 आत्mann. Taking care of your mental health, one step at a time.</p>
         </div>
       </footer>
     </div>

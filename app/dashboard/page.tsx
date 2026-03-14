@@ -9,28 +9,28 @@ const features = [
     description: 'Talk to your personal wellness companion. Get support anytime.',
     icon: MessageSquare,
     href: '/dashboard/chat',
-    color: 'text-mindwell-primary-green',
+    color: 'text-आत्mann-primary-green',
   },
   {
     title: 'Mood Tracker',
     description: 'Track your mood daily and see patterns over time.',
     icon: TrendingUp,
     href: '/dashboard/mood',
-    color: 'text-mindwell-terracotta',
+    color: 'text-आत्mann-terracotta',
   },
   {
     title: 'Journal',
     description: 'Express yourself freely. Get AI-powered emotional insights.',
     icon: FileText,
     href: '/dashboard/journal',
-    color: 'text-mindwell-accent-dark',
+    color: 'text-आत्mann-accent-dark',
   },
   {
     title: 'Burnout Survey',
     description: 'Assess your stress levels and get personalized recommendations.',
     icon: Lightbulb,
     href: '/dashboard/survey',
-    color: 'text-mindwell-accent-light',
+    color: 'text-आत्mann-accent-light',
   },
 ]
 
@@ -38,7 +38,7 @@ export default function DashboardPage() {
   return (
     <div className="p-8">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-3">Welcome to Your Wellness Space</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">Welcome to Your आत्mann</h1>
         <p className="text-lg text-gray-600">
           Your mental health is a priority. Choose how you'd like to take care of yourself today.
         </p>
